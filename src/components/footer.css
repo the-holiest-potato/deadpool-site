@@ -1,0 +1,54 @@
+.cd-info-bar{
+          position:relative; z-index:3;
+          display:flex; align-items:center; justify-content:space-between;
+          gap:18px; margin-top:26px; padding-top:18px;
+          border-top:1px solid var(--line);
+          opacity:0; transform:translateY(10px);
+          animation:cdFadeUp .6s ease forwards; animation-delay:1s;
+        }
+        @keyframes cdFadeUp{to{opacity:1; transform:none;}}
+
+        .cd-story{display:flex; gap:12px; max-width:430px;}
+        .cd-story .cd-i{
+          flex:0 0 auto; width:18px; height:18px; border-radius:50%;
+          border:1px solid var(--muted); color:var(--muted);
+          font-size:11px; display:flex; align-items:center; justify-content:center; margin-top:2px;
+        }
+        .cd-story h4{margin:0 0 4px; font-size:11.5px; letter-spacing:1px; color:var(--ink);}
+        .cd-story p{margin:0; font-size:11.5px; line-height:1.5; color:var(--muted);}
+        .cd-story b{color:var(--ink); font-weight:600;}
+
+        .cd-book-btn{
+          position:relative;
+          background:var(--red); color:var(--ink);
+          border:none; border-radius:24px;
+          font-family:'Inter'; font-weight:700; font-size:12.5px; letter-spacing:1px;
+          padding:13px 26px;
+          cursor:pointer; overflow:hidden;
+          transition:transform .25s ease, box-shadow .25s ease;
+          flex:0 0 auto;
+        }
+        .cd-book-btn:hover{transform:translateY(-2px); box-shadow:0 12px 24px -8px var(--red-glow);}
+        .cd-book-btn:active{transform:translateY(0) scale(.97);}
+        .cd-ripple{position:absolute; border-radius:50%; background:rgba(255,255,255,.5); transform:scale(0); animation:cdRippleAnim .55s ease-out; pointer-events:none;}
+        @keyframes cdRippleAnim{to{transform:scale(3); opacity:0;}}
+
+        .cd-video-badge{flex:0 0 auto; width:54px; height:54px; position:relative;}
+        .cd-video-badge svg{width:100%; height:100%;}
+        .cd-ring-text{animation:cdSpin 11s linear infinite; transform-origin:50% 50%;}
+        .cd-video-badge:hover .cd-ring-text{animation-duration:3s;}
+
+        @media (max-width:720px){
+          .cd-nav-links{display:none;}
+          .cd-cast-group{gap:12px;}
+          .cd-character{width:150px; right:0;}
+          .cd-scan-wrap{width:220px; height:220px;}
+          .cd-info-bar{flex-wrap:wrap;}
+          .cd-story{order:2; max-width:100%;}
+          .cd-book-btn{order:1;}
+          .cd-video-badge{order:3;}
+        }
+
+        @media (prefers-reduced-motion: reduce){
+          .cd-body *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+        }

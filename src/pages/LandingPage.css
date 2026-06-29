@@ -1,0 +1,156 @@
+.cd-body{
+          --bg-outer:#e4dfd6;
+          --bg-card:#0b0b0d;
+          --ink:#f4f2ec;
+          --muted:#9b9b9f;
+          --red:#e2222b;
+          --red-deep:#5e0c12;
+          --red-glow:rgba(226,34,43,.55);
+          --line:rgba(255,255,255,.1);
+          --radius:28px;
+          font-family:'Inter',sans-serif;
+          background:var(--bg-outer);
+          min-height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          padding:28px 16px;
+          box-sizing:border-box;
+        }
+        .cd-body *{box-sizing:border-box;}
+
+        .cd-card{
+          position:relative;
+          width:100%;
+          max-width:1080px;
+          background:
+            radial-gradient(120% 140% at 78% 8%, rgba(226,34,43,.16), transparent 55%),
+            var(--bg-card);
+          border-radius:var(--radius);
+          color:var(--ink);
+          overflow:hidden;
+          padding:22px 26px 26px;
+          box-shadow:0 40px 80px -30px rgba(0,0,0,.5);
+          opacity:0;
+          transform:translateY(18px);
+          animation:cdCardIn .7s cubic-bezier(.2,.7,.2,1) forwards;
+        }
+        @keyframes cdCardIn{to{opacity:1;transform:none;}}
+
+        .cd-grid-bg{
+          position:absolute; inset:0;
+          background-image:
+            linear-gradient(var(--line) 1px, transparent 1px),
+            linear-gradient(90deg, var(--line) 1px, transparent 1px);
+          background-size:46px 46px;
+          opacity:.18;
+          mask-image:radial-gradient(circle at 70% 35%, black 0%, transparent 70%);
+          pointer-events:none;
+        }
+        .cd-sweep{
+          position:absolute; top:0; left:-30%;
+          width:30%; height:100%;
+          background:linear-gradient(100deg, transparent, rgba(255,255,255,.04), transparent);
+          animation:cdSweep 7s ease-in-out infinite;
+          pointer-events:none;
+        }
+        @keyframes cdSweep{0%{left:-30%;} 50%{left:120%;} 100%{left:120%;}}
+        
+        .cd-icon-btn:hover{border-color:var(--red); color:var(--red); transform:translateY(-2px);}
+        .cd-avatar{
+          width:32px; height:32px; border-radius:50%;
+          background:linear-gradient(135deg,#5b5b60,#2a2a2e);
+          border:1px solid var(--line);
+        }
+
+       
+        
+        .cd-cast-row{
+          position:relative; z-index:3;
+          display:flex; justify-content:space-between;
+          font-size:11px; letter-spacing:1.6px; color:var(--ink);
+          margin-bottom:6px;
+        }
+        .cd-cast-group{display:flex; gap:22px;}
+        .cd-cast-group span{
+          opacity:0; transform:translateY(8px);
+          animation:cdCastIn .5s ease forwards;
+        }
+        .cd-cast-group.left span:nth-child(1){animation-delay:.5s;}
+        .cd-cast-group.left span:nth-child(2){animation-delay:.6s;}
+        .cd-cast-group.right span:nth-child(1){animation-delay:.6s;}
+        .cd-cast-group.right span:nth-child(2){animation-delay:.7s;}
+        @keyframes cdCastIn{to{opacity:1; transform:none;}}
+
+        .cd-part-marker{
+          position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+          display:flex; align-items:center; gap:8px;
+          font-family:'Archivo Black'; font-size:13px; letter-spacing:3px;
+          color:var(--ink); opacity:0;
+          animation:cdFadeIn .6s ease forwards; animation-delay:.4s;
+        }
+        .cd-tick{width:1px; height:14px; background:var(--line);}
+
+        .cd-scan-wrap{
+          position:absolute; left:50%; top:48%;
+          transform:translate(-50%,-50%);
+          width:300px; height:300px;
+          z-index:1;
+        }
+        .cd-ring{position:absolute; inset:0; border-radius:50%; border:1px dashed var(--line);}
+        .cd-ring.r1{animation:cdSpin 26s linear infinite;}
+        .cd-ring.r2{inset:26px; border-style:solid; border-color:var(--line); animation:cdSpin 18s linear infinite reverse;}
+        @keyframes cdSpin{to{transform:rotate(360deg);}}
+
+        .cd-red-disc{
+          position:absolute; inset:36px; border-radius:50%;
+          background:radial-gradient(circle at 40% 35%, var(--red) 0%, var(--red-deep) 70%, transparent 100%);
+          opacity:.55;
+        }
+
+        .cd-play-btn{
+          position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+          width:54px; height:54px; border-radius:50%;
+          background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.5);
+          display:flex; align-items:center; justify-content:center;
+          cursor:pointer;
+          animation:cdPulse 2.4s ease-in-out infinite;
+          transition:transform .15s ease;
+        }
+        .cd-play-btn.pressed{transform:translate(-50%,-50%) scale(.85);}
+        .cd-play-btn svg{width:16px; height:16px; fill:var(--ink); margin-left:2px;}
+        @keyframes cdPulse{0%,100%{box-shadow:0 0 0 0 var(--red-glow);} 50%{box-shadow:0 0 0 14px transparent;}}
+
+        .cd-character{
+          position:absolute; right:2%; bottom:-18px;
+          width:230px; z-index:2;
+          animation:cdFloat 5s ease-in-out infinite;
+          filter:drop-shadow(0 20px 30px rgba(0,0,0,.5));
+          transition:transform .15s ease-out;
+        }
+        @keyframes cdFloat{0%,100%{transform:translateY(0);} 50%{transform:translateY(-9px);}}
+
+        .cd-title-row{
+          position:relative; z-index:3;
+          display:flex; align-items:flex-end; justify-content:center;
+          margin-top:30px;
+        }
+        .cd-movie-title{
+          font-family:'Archivo Black', sans-serif;
+          font-size:clamp(54px, 10vw, 108px);
+          line-height:.85;
+          margin:0;
+          letter-spacing:-1px;
+          color:var(--ink);
+          text-align:center;
+          display:flex;
+        }
+        .cd-ch{display:inline-block; opacity:0; transform:translateY(40px) scale(.85); animation:cdLetterIn .55s cubic-bezier(.2,.8,.2,1) forwards;}
+        @keyframes cdLetterIn{to{opacity:1; transform:none;}}
+
+        .cd-year-tag{
+          align-self:center; font-size:13px; color:var(--muted); letter-spacing:1px; margin-left:10px;
+          opacity:0; animation:cdFadeIn .6s ease forwards; animation-delay:1.3s;
+        }
+
+        

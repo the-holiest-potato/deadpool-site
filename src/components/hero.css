@@ -1,0 +1,59 @@
+/* 1. Ensure the container has explicit vertical spacing */
+.cd-center-stage {
+  position: relative;
+  width: 100%;
+  height: 550px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px; /* Gives the top navigation and tags room to breathe */
+}
+
+/* 2. The Actor Header - Shifted down to sit cleanly in the dark gap */
+.cd-cast-row {
+  position: absolute;
+  top: -10px; /* Lowered from the absolute top so it clears navigation tags */
+  width: 88%; 
+  display: flex;
+  justify-content: space-between;
+  z-index: 4; 
+}
+
+.cd-cast-group {
+  display: flex;
+  gap: 35px; /* Creates the distinct spacing seen in your layout */
+}
+
+.cd-cast-group span {
+  font-family: 'Bebas Neue', sans-serif; /* Changes names to a clean condensed font */
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: #e3e3e5;
+}
+
+/* 3. The Movie Title - Switched to Bebas Neue */
+.cd-movie-title {
+  font-family: 'Bebas Neue', sans-serif; /* Apply the ultra-clean condensed font */
+  font-size: 14vw; 
+  font-weight: 400; /* Bebas Neue is bold by default */
+  letter-spacing: -0.01em; 
+  color: #e3e3e5;
+  margin: 0;
+  line-height: 0.85;
+  text-transform: uppercase;
+}
+
+/* 4. Lowering and Anchoring Deadpool */
+.cd-character-img {
+  position: absolute;
+  z-index: 3; 
+  bottom: -40px; /* Pushes him lower so his hands frame the text nicely */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  height: 90%; 
+  max-height: 410px; 
+  width: auto;
+  object-fit: contain;
+  pointer-events: none;
+}
